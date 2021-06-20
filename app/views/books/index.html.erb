@@ -1,34 +1,32 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
+  <%= render 'books/book', books: @books %>
 
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <h2>User info</h2>
-  <%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
+    <div class="col-md-8 offset-md-1">
 
-  <%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.png"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.attachment_field :profile_image, placeholder: "Image" %>
+ <h2>Books</h2>
+  <table class="table table-hover table-invers">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
+    <tbody>
+　　　　<% @books.each do |book| %>
+            <tr>
+
+                <td><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no_image.png",size: "30x30" %></td>
+                <td><%= link_to book.title, "/books/#{book.id}" %></td>
+                <td><%= book.body %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
 
 
-
-  <%= f.submit "変更を保存" %>
-  <% end %>
     </div>
-
-    <div class="col-md-8 offset-md-1"></div>
-
   </div>
 </div>
-
-
-<% @books.each do |book| %>
-<div>
-  <p>ユーザーネーム：<%= book.user.name %></p>
-  <p><%= book.title %></p>
-  <p><%= book.body %></p>
-</div>
-<% end %>
-
