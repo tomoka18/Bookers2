@@ -76,3 +76,5 @@ gem "factory_bot_rails"
 gem 'faker'
 
 gem "pry-rails"
+
+gem 'jquery-rails'
