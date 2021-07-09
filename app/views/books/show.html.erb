@@ -8,7 +8,7 @@
 　　　<h2>Book detail</h2>
 　　　<table class="table">
 　　　  <tbody>
-
+　　　    <tr id="book_<%= @book.id %>">
 　　　      <td>
 　　　       <%= attachment_image_tag @book.user, :profile_image, :fill, 30, 30, fallback: "no_image.png",size: "30x30" %><br>
 　　　       <%= link_to @book.user.name, user_path(@user) %>
@@ -25,21 +25,21 @@
 　　　        <%= link_to "Destroy", book_path(@book), method: :delete , class:'btn btn-danger'  %>
 　　　        <% end %>
 　　　      </td>
-                <td>
-                  <div id="favorites_buttons_<%= @book.id %>">
+              <td>
+                <div id="favorites_buttons_<%= @book.id %>">
                     <%= render partial: 'favorites/favorite-btn', locals: { book: @book} %>
-                  </div>
-                </td>
-
-　　　      <td>
+                </div>
+              </td>
+　　　      <td class="comments-count">
 　　　        コメント数：<%= @book.book_comments.count %>
 　　　      </td>
+　　　   </tr>
 
 　　　  </tbody>
 　　　</table>
 　　　<div>
 　　　  <table>
-　　　    <tbody id="comments_index">
+　　　    <tbody class="comments_index">
             <%= render 'books/comments', book: @book, user: @user %>
           </tbody>
 　　　  </table>
